@@ -1,0 +1,5 @@
+FROM danieldent/meteor:onbuild
+EXPOSE 3000
+ENV PORT 3000
+ENV METEOR_ALLOW_SUPERUSER 1
+USER root
