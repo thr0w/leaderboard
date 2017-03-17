@@ -7,6 +7,25 @@ h5rep.query = {
         return h5rep.db.message.findOne({
             pubId, nodeId, msgId
         });
+    },
+    messageByNode(pubId, nodeId) {
+        console.log({ pubId, nodeId })
+
+        console.log('messageByNode-')
+        h5rep.db.message.find(
+            {}
+        ).forEach(function (m) {
+            console.dir(m)
+        });
+
+
+        return h5rep.db.message.find(
+            {
+                pubId, nodeId
+            },
+            {
+                sort: { msgId: 1 }
+            });
     }
 }
 

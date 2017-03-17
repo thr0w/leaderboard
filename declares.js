@@ -53,6 +53,8 @@ if (Meteor.isServer) {
     }
     Jogadores.soa = {
         givePoints(id) {
+            console.log('givePoints: ', id);
+            console.dir(Jogadores.db.Players.find().fetch()[0]);
             Jogadores.db.Players.update({ _id: id }, { $inc: { score: 5 } });
         }
     }
@@ -63,6 +65,7 @@ if (Meteor.isServer) {
                 "Carl Friedrich Gauss", "Nikola Tesla", "Claude Shannon"];
             _.each(names, function (name, idx) {
                 Jogadores.db.Players.insert({
+                    _id: ['jogador', idx].join(''),
                     name: name,
                     score: idx * 5
                 });
