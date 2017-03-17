@@ -15,12 +15,18 @@ Package.onUse(function (api) {
     api.use('less');
 
     api.addFiles([
-        'h5rep.server.js',
         'h5rep.db.js',
         'h5rep.query.js',
+    ]);
+
+    api.addFiles([
+        'h5rep.server.js',
         'h5rep.soa.js',
     ], 'server');
-    api.addFiles(['h5rep.client.js'], 'client');
+    api.addFiles([
+        'h5rep.client.html',
+        'h5rep.client.js'
+    ], 'client');
 
-    api.export('h5rep');
+    api.export(['h5rep', 'h5rep_status']);
 });

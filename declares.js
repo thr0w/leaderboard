@@ -41,6 +41,9 @@ if (Meteor.isServer) {
                 arguments
             )
             Jogadores.soa.givePoints(id)
+        },
+        'nolog_Jogadores.soa.givePoints': function (id) {
+            Jogadores.soa.givePoints(id)
         }
     })
     Jogadores.methods = {
@@ -56,15 +59,13 @@ if (Meteor.isServer) {
         if (Jogadores.db.Players.find().count() === 0) {
             var names = ["Ada Lovelace", "Grace Hopper", "Marie Curie",
                 "Carl Friedrich Gauss", "Nikola Tesla", "Claude Shannon"];
-            _.each(names, function (name) {
+            _.each(names, function (name, idx) {
                 Jogadores.db.Players.insert({
                     name: name,
-                    score: Math.floor(Random.fraction() * 10) * 5
+                    score: idx * 5
                 });
             });
         }
-        if (process.env.h5rep_me == 'LAN')
-            h5rep.sincronizar_bancos_dados();
     });
 }
 

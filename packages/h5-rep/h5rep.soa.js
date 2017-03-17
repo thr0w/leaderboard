@@ -38,9 +38,9 @@ h5rep.soa = {
                     {
                         pubId,
                         nodeId,
-                        message_next: 1,
                         message_sent: 0,
                         confirm_sent: 0,
+                        last_sync: null,
                         message_received: 0,
                         confirm_received: 0,
                     }
@@ -70,7 +70,7 @@ h5rep.soa = {
                                 _id: sub._id
                             },
                             update: {
-                                $inc: { message_next: 1 }
+                                $inc: { message_sent: 1 }
                             },
                             new: true
                         }
@@ -80,7 +80,7 @@ h5rep.soa = {
                     h5rep.db.message.insert({
                         pubId: sub.pubId,
                         nodeId: sub.nodeId,
-                        msgId: r.message_next,
+                        msgId: r.message_sent,
                         ts: new Date,
                         op, user, args
                     });
@@ -93,29 +93,29 @@ h5rep.soa = {
 
 
 
-// https://github.com/meteor/meteor/blob/devel/packages/ddp/DDP.md
+// // https://github.com/meteor/meteor/blob/devel/packages/ddp/DDP.md
 
-/*
+// /*
 
-rodar mesma aplicacao mas em duas instancias e dois bancos de dados
+// rodar mesma aplicacao mas em duas instancias e dois bancos de dados
 
-Cloud - localhost:3100
-LAN - localhost:3200
+// Cloud - localhost:3100
+// LAN - localhost:3200
 
-ao iniciar o Cloud
-   -p 3100
-   h5rep_me=Cloud
-   h5rep_remote=LAN
+// ao iniciar o Cloud
+//    -p 3100
+//    h5rep_me=Cloud
+//    h5rep_remote=LAN
 
 
-ao iniciar o LAN
-   -p 3200
-   h5rep_me=LAN
-   h5rep_remote=Cloud
+// ao iniciar o LAN
+//    -p 3200
+//    h5rep_me=LAN
+//    h5rep_remote=Cloud
 
-   if (h5rep_me=LAN)
-    setTimeout(atualizar replicação)
-        
-        var remote=DDP.connect('localhost:3100');
-        for h5rep.db.messages()
-          remote.call('Jogadores.soa.givePoints', args[0])
+//    if (h5rep_me=LAN)
+//     setTimeout(atualizar replicação)
+
+//         var remote=DDP.connect('localhost:3100');
+//         for h5rep.db.messages()
+//           remote.call('Jogadores.soa.givePoints', args[0])

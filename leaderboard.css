@@ -5,7 +5,7 @@
 
 body {
   font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: normal;
   margin: 3em 0;
   padding: 0;
@@ -181,4 +181,13 @@ body {
   .player.selected:hover {
     background-color: #fefff4;
   }
+}
+
+#rep_status {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  padding: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
 }

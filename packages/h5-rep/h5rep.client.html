@@ -1,0 +1,9 @@
+<template name="h5rep_status">
+    este nó: {{me}}
+    {{#each remotes}}
+        remoto: {{nodeId}} {{status}}
+    {{/each}}
+    {{#if lan}}
+        <button>Sync</button>
+    {{/if}}
+</template>
