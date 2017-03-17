@@ -22,7 +22,7 @@ h5rep.sincronizar_bancos_dados = function () {
                 conn.call('nolog_Jogadores.soa.givePoints', message.args[0]);
                 h5rep.db.message.remove({ _id: message._id });
             }
-            h5rep.db.subscriptions.update(
+            h5rep.db.subscription.update(
                 {
                     _id: sub._id
                 },

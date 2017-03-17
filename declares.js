@@ -35,6 +35,7 @@ if (Meteor.isServer) {
     });
     Meteor.methods({
         'Jogadores.soa.givePoints': function (id) {
+            console.log('(com log) Jogadores.soa.givePoints', id)
             h5rep.soa.message.log(
                 Jogadores.methods.givePoints,
                 Meteor.userId,
@@ -43,6 +44,7 @@ if (Meteor.isServer) {
             Jogadores.soa.givePoints(id)
         },
         'nolog_Jogadores.soa.givePoints': function (id) {
+            console.log('nolog_Jogadores.soa.givePoints', id)
             Jogadores.soa.givePoints(id)
         }
     })
